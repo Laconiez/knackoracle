@@ -3,6 +3,8 @@ import { observer } from 'mobx-react';
 
 import personStore from 'stores/Skills.store';
 
+import Layout from 'components/Layouts/CommonLayout';
+
 const Skill = () => {
   const { list, addTechnology, selectTechnology, selectedTechId, addSkill } = personStore;
 
@@ -25,8 +27,7 @@ const Skill = () => {
   };
 
   return (
-    <div>
-      Skills
+    <Layout title="Skills">
       <ul>
         {list.map((item) => (
           <li key={item.id} onClick={selectTech(item.id)}>
@@ -62,7 +63,7 @@ const Skill = () => {
         </label>
         <button onClick={addSkillTech}>Add skill</button>
       </section>
-    </div>
+    </Layout>
   );
 };
 

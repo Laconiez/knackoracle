@@ -4,19 +4,20 @@ import { Link } from 'react-router-dom';
 
 import questionsStore from 'stores/Questions.store';
 
+import Layout from 'components/Layouts/CommonLayout';
+
 const Questions = () => {
   const { list } = questionsStore;
 
   return (
-    <div>
-      Questions
+    <Layout title="Questions">
       <ul>
         {list.map((l) => (
           <li key={l.id}>{l.content}</li>
         ))}
       </ul>
       <Link to="/questions/new">Create New Question</Link>
-    </div>
+    </Layout>
   );
 };
 

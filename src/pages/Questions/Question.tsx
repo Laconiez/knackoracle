@@ -1,5 +1,6 @@
 import React, { useRef, useState } from 'react';
 import { observer } from 'mobx-react';
+import { useHistory } from 'react-router-dom';
 
 import questionsStore from 'stores/Questions.store';
 import skillsStore from 'stores/Skills.store';
@@ -9,6 +10,8 @@ import { Skill } from 'entities/Skill';
 const Question = () => {
   const { addQuestion } = questionsStore;
   const { list: techList } = skillsStore;
+
+  const history = useHistory();
 
   const [selectedTechId, setSelectedTechId] = useState<string | null>(null);
   const [skills, setSkills] = useState<Skill[]>([]);
@@ -38,7 +41,6 @@ const Question = () => {
           <select
             ref={techSelect}
             onChange={(e) => {
-              debugger;
               const value = e.target.value;
               setSelectedTechId(value);
               const s = techList.find((t) => t.id === value);
@@ -72,7 +74,21 @@ const Question = () => {
           <input ref={gradeInput} />
         </label>
 
-        <button>Save</button>
+        <button
+          onClick={(e) => {
+            addQuestion({
+              content: contentTextarea.current?.value ?? '',
+              answer: answerTextarea.current?.value ?? '',
+              skillId: skillSelect.current?.value ?? '',
+              techId: techSelect.current?.value ?? '',
+              grade: gradeInput.current?.value ? +gradeInput.current.value : 0,
+            });
+
+            history.push('/questions');
+          }}
+        >
+          Save
+        </button>
       </div>
     </div>
   );

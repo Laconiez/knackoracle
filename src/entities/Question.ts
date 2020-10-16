@@ -3,4 +3,6 @@ export type Question = {
   content: string;
   answer: string;
   skillId: string;
+  techId: string;
+  grade: number;
 };

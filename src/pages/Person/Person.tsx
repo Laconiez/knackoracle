@@ -4,6 +4,8 @@ import { nanoid } from 'nanoid';
 
 import personStore from 'stores/Persons.store';
 
+import Layout from 'components/Layouts/CommonLayout';
+
 const Person = () => {
   const { addPerson, list } = personStore;
 
@@ -11,8 +13,7 @@ const Person = () => {
   const cvInput = useRef<HTMLInputElement>(null);
 
   return (
-    <div>
-      Person
+    <Layout title={'Person'}>
       <ul>
         {list.map((item) => (
           <li>
@@ -41,7 +42,7 @@ const Person = () => {
       >
         Add person
       </button>
-    </div>
+    </Layout>
   );
 };
 

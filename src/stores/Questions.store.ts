@@ -18,6 +18,7 @@ class Questions {
 
   addQuestion = (question: Omit<Question, 'id'>) => {
     this.list = [...this.list, { id: nanoid(), ...question }];
+    debugger;
     setLocalValue('QUESTIONS', this.list);
   };
 }
