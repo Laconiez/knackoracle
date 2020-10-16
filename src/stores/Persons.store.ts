@@ -1,4 +1,4 @@
-import { action, makeAutoObservable } from 'mobx';
+import { makeAutoObservable } from 'mobx';
 
 import { Person } from 'entities/Person';
 import { db, getCollectionEntries } from '../utils/firebase';
@@ -12,34 +12,26 @@ class Persons {
 
   private readonly collectionRef = db.collection('persons');
 
-  loadList = () => {
-    this.collectionRef
-      .get()
-      .then((d) => {
-        const entries = getCollectionEntries<Person>(d);
-        this.setList(entries);
-      })
-      .catch(() => {
-        processError();
-    })
+  loadList = async () => {
+    try {
+      const data = await this.collectionRef.get();
+      this.list = getCollectionEntries<Person>(data);
+    } catch {
+      processError();
+    }
   }
 
-  addPerson = (person: Person) => {
-    this.collectionRef
-      .doc(nanoid())
-      .set(person)
-      .then(() => {
-        this.setList([...this.list, person]);
-      })
-      .catch(() => {
-        processError();
-      })
+  addPerson = async (person: Person) => {
+    try {
+      await this.collectionRef
+        .doc(nanoid())
+        .set(person);
+
+      this.list = [...this.list, person];
+    } catch {
+      processError();
+    }
   };
-
-  @action
-  setList = (data: Person[]) => {
-    this.list = data;
-  }
 }
 
 function processError() {
