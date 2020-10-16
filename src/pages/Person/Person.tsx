@@ -6,6 +6,7 @@ import axios from 'axios';
 import personStore from 'stores/Persons.store';
 
 import Layout from 'components/Layouts/CommonLayout';
+import { Input } from 'components/Inputs/Input.styles';
 
 const Person = () => {
   const { addPerson, list } = personStore;
@@ -42,12 +43,12 @@ const Person = () => {
       <section>
         <label>
           Name
-          <input ref={nameInput} />
+          <Input ref={nameInput} placeholder="Name" />
         </label>
 
         <label>
           CV
-          <input ref={cvInput} />
+          <Input ref={cvInput} placeholder="CV link" />
         </label>
 
         <img src={imgUrl as string} alt="avatar" />
