@@ -1,22 +1,26 @@
-import React, { useRef } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { observer } from 'mobx-react';
-import { nanoid } from 'nanoid';
 
 import personStore from 'stores/Persons.store';
 
 import Layout from 'components/Layouts/CommonLayout';
+import { nanoid } from 'nanoid';
 
 const Person = () => {
-  const { addPerson, list } = personStore;
+  const { addPerson, list, loadList } = personStore;
 
   const nameInput = useRef<HTMLInputElement>(null);
   const cvInput = useRef<HTMLInputElement>(null);
+
+  useEffect(() => {
+    loadList();
+  }, [])
 
   return (
     <Layout title={'Person'}>
       <ul>
         {list.map((item) => (
-          <li>
+          <li key={item.id}>
             {item.name} {item.cv}
           </li>
         ))}
