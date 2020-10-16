@@ -7,6 +7,7 @@ import Person from 'pages/Person';
 import Skills from 'pages/Skill';
 import Questions from 'pages/Questions';
 import Question from 'pages/Questions/Question';
+import Projects from 'pages/Projects';
 
 type RoutesProps = {
   path: string;
@@ -19,6 +20,11 @@ const routes: RoutesProps[] = [
   {
     path: '/persons',
     component: Person,
+    exact: true,
+  },
+  {
+    path: '/projects',
+    component: Projects,
     exact: true,
   },
   {
