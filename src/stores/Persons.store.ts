@@ -1,16 +1,17 @@
 import { makeAutoObservable } from 'mobx';
 
 import { Person } from 'entities/Person';
-import { db, getCollectionEntries } from '../utils/firebase';
+import { db, Collections, getCollectionEntries } from '../utils/firebase';
 import { nanoid } from 'nanoid';
 
 class Persons {
+  list: Person[] = [];
+
+  private readonly collectionRef = db.collection(Collections.Persons);
+
   constructor() {
     makeAutoObservable(this);
   }
-  list: Person[] = [];
-
-  private readonly collectionRef = db.collection('persons');
 
   loadList = async () => {
     try {
