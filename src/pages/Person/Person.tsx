@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { observer } from 'mobx-react';
 import { nanoid } from 'nanoid';
 import axios from 'axios';
@@ -8,7 +8,7 @@ import personStore from 'stores/Persons.store';
 import Layout from 'components/Layouts/CommonLayout';
 
 const Person = () => {
-  const { addPerson, list } = personStore;
+  const { addPerson, list, loadList } = personStore;
 
   const [imgUrl, setImgUrl] = useState<string | undefined>(undefined);
 
@@ -30,11 +30,15 @@ const Person = () => {
     }
   };
 
+  useEffect(() => {
+    loadList();
+  }, [])
+
   return (
     <Layout title={'Person'}>
       <ul>
         {list.map((item) => (
-          <li>
+          <li key={item.id}>
             {item.name} {item.cv}
           </li>
         ))}
