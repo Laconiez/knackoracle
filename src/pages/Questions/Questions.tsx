@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
 import { Link } from 'react-router-dom';
 
@@ -7,7 +7,11 @@ import questionsStore from 'stores/Questions.store';
 import Layout from 'components/Layouts/CommonLayout';
 
 const Questions = () => {
-  const { list } = questionsStore;
+  const { list, loadList } = questionsStore;
+
+  useEffect(() => {
+    loadList();
+  }, [])
 
   return (
     <Layout title="Questions">
