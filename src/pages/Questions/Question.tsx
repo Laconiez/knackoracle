@@ -6,6 +6,7 @@ import questionsStore from 'stores/Questions.store';
 import skillsStore from 'stores/Skills.store';
 import { Technology } from 'entities/Technology';
 import { Skill } from 'entities/Skill';
+import { nanoid } from 'nanoid';
 
 const Question = () => {
   const { addQuestion } = questionsStore;
@@ -77,6 +78,7 @@ const Question = () => {
         <button
           onClick={(e) => {
             addQuestion({
+              id: nanoid(),
               content: contentTextarea.current?.value ?? '',
               answer: answerTextarea.current?.value ?? '',
               skillId: skillSelect.current?.value ?? '',

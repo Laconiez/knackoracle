@@ -1,14 +1,13 @@
-import { makeAutoObservable } from 'mobx';
+import { makeAutoObservable, runInAction } from 'mobx';
 import { nanoid } from 'nanoid';
 
-import { Question } from 'entities/Question';
-
 import { Collections, db, getCollectionEntries } from '../utils/firebase';
+import { Company } from '../entities/Company';
 
-class Questions {
-  list: Question[] = [];
+class Projects {
+  list: Company[] = [];
 
-  private readonly collectionRef = db.collection(Collections.Questions);
+  private readonly collectionRef = db.collection(Collections.Projects);
 
   constructor() {
     makeAutoObservable(this);
@@ -17,19 +16,19 @@ class Questions {
   loadList = async () => {
     try {
       const data = await this.collectionRef.get();
-      this.list = getCollectionEntries<Question>(data);
+      this.list = getCollectionEntries<Company>(data);
     } catch {
       processError();
     }
   }
 
-  addQuestion = async (question: Question) => {
+  addProject = async (project: Company) => {
     try {
       await this.collectionRef
         .doc(nanoid())
-        .set(question);
+        .set(project);
 
-      this.list = [...this.list, question];
+      this.list = [...this.list, project];
     } catch {
       processError();
     }
@@ -40,4 +39,4 @@ function processError() {
   alert('Something went wrong, please try again');
 }
 
-export default new Questions();
+export default new Projects();
