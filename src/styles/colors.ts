@@ -11,3 +11,5 @@ export const greyDark = '#C0C2C9';
 export const gold = '#A4C032';
 
 export const distillery = '#D8A462';
+
+export const accent = '#ff6667'

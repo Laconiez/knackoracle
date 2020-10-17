@@ -6,6 +6,7 @@ import { nanoid } from 'nanoid';
 
 class Persons {
   list: Person[] = [];
+  person: Person | null = null;
 
   private readonly collectionRef = db.collection(Collections.Persons);
 
@@ -18,6 +19,18 @@ class Persons {
       const data = await this.collectionRef.get();
       this.list = getCollectionEntries<Person>(data);
     } catch {
+      processError();
+    }
+  }
+
+  getPerson = async (personId: string) => {
+    try {
+      const data = await this.collectionRef
+        .where('id', '==', personId)
+        .get()
+
+      this.person = getCollectionEntries<Person>(data)[0];
+    } catch(error) {
       processError();
     }
   }

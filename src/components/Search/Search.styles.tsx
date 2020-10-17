@@ -5,7 +5,6 @@ import { secondaryFont } from 'styles/fonts';
 
 const borderRadius = '5px';
 
-
 export const Container = styled.div`
   display: flex;
   margin: 20px 0;
@@ -34,4 +33,9 @@ export const Button = styled.button`
   padding: 6px 24px;
   border-radius: 0 ${borderRadius} ${borderRadius} 0;
   border: none;
+  
+  :focus {
+    outline: none;
+    box-shadow: none;
+  }
 `

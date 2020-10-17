@@ -8,9 +8,10 @@ type GridProps<T> = {
   data: T[];
   fields: string[];
   indexField: string;
-};
+  onRowClick: (id: string) => void;
+}
 
-const Grid = ({ titles = [], data = [], fields = [], indexField }: GridProps<any>) => {
+const Grid = ({ titles = [], data = [], fields = [], indexField, onRowClick = () => {} }: GridProps<any>) => {
   const displayData = data.map((item, idx) => {
     const i: any = {};
     fields.forEach((f) => {
@@ -31,7 +32,7 @@ const Grid = ({ titles = [], data = [], fields = [], indexField }: GridProps<any
       <Content>
         {displayData.map((item) => {
           return (
-            <Row key={item[indexField]}>
+            <Row key={item[indexField]} onClick={() => onRowClick(item.id)}>
               {fields.map((field) => {
                 return <Cell key={`${item.id}-${nanoid()}`}>{item[field]}</Cell>;
               })}
