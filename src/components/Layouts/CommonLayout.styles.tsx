@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from 'styled-components/macro';
 
 export const Container = styled.div`
   display: flex;
@@ -14,6 +14,7 @@ export const Content = styled.main`
   flex-direction: column;
   align-items: stretch;
   padding: 56px 72px 32px;
+  flex: 1;
 `;
 
 export const TopBar = styled.header`

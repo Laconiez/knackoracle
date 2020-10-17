@@ -1,4 +1,4 @@
-import React, { lazy, FunctionComponent, ComponentClass, LazyExoticComponent } from 'react';
+import React, { FunctionComponent, ComponentClass, LazyExoticComponent } from 'react';
 
 import { Switch, Route } from 'react-router-dom';
 
