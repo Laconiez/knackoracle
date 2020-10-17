@@ -33,6 +33,32 @@ class Persons {
       processError();
     }
   };
+
+  search = async (searchText: string = '') => {
+    try {
+      const list = await this.collectionRef
+        .orderBy('name')
+        .startAt( searchText)
+        .endAt( searchText + '\uf8ff')
+        .get();
+
+      this.list = getCollectionEntries<Person>(list);
+    } catch (error) {
+      processError();
+    }
+  }
+
+  orderBy = async (field: string, direction: 'desc' | 'asc' = 'asc') => {
+    try {
+      const list = await this.collectionRef
+        .orderBy(field, direction)
+        .get();
+
+      this.list = getCollectionEntries<Person>(list);
+    } catch (error) {
+      processError();
+    }
+  }
 }
 
 function processError() {
