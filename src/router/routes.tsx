@@ -19,7 +19,6 @@ const routes: RoutesProps[] = [
   {
     path: '/persons',
     component: Person,
-    exact: true,
   },
   {
     path: '/skills',

@@ -3,6 +3,8 @@ import { observer } from 'mobx-react';
 import { nanoid } from 'nanoid';
 import axios from 'axios';
 
+import { Route } from 'react-router-dom';
+
 import personStore from 'stores/Persons.store';
 
 import Layout from 'components/Layouts/CommonLayout';
@@ -37,33 +39,36 @@ const Person = () => {
   }, [loadList]);
 
   return (
-    <Layout title={'Person'}>
-      <Grid titles={['Name', 'CV']} data={list} fields={['name', 'cv']} indexField="id" />
-      <section>
-        <label>
-          Name
-          <Input ref={nameInput} placeholder="Name" />
-        </label>
+    <>
+      <Layout title={'Person'}>
+        <Grid titles={['Name', 'CV']} data={list} fields={['name', 'cv']} indexField="id" />
+        <section>
+          <label>
+            Name
+            <Input ref={nameInput} placeholder="Name" />
+          </label>
 
-        <label>
-          CV
-          <Input ref={cvInput} placeholder="CV link" />
-        </label>
+          <label>
+            CV
+            <Input ref={cvInput} placeholder="CV link" />
+          </label>
 
-        <img src={imgUrl as string} alt="avatar" />
-        <button onClick={addAvatar}> add avatar</button>
-      </section>
-      <button
-        onClick={() => {
-          const name = nameInput?.current?.value ?? '';
-          const cv = cvInput?.current?.value ?? '';
+          <img src={imgUrl as string} alt="avatar" />
+          <button onClick={addAvatar}> add avatar</button>
+        </section>
+        <button
+          onClick={() => {
+            const name = nameInput?.current?.value ?? '';
+            const cv = cvInput?.current?.value ?? '';
 
-          addPerson({ id: nanoid(), name, cv, avatar: imgUrl });
-        }}
-      >
-        Add person
-      </button>
-    </Layout>
+            addPerson({ id: nanoid(), name, cv, avatar: imgUrl });
+          }}
+        >
+          Add person
+        </button>
+      </Layout>
+      <Route path="/persons/:personId" render={() => <div>PPPPPP</div>} />
+    </>
   );
 };
 
