@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
 
-import { black, white } from 'styles/colors';
+import { black, white, distillery } from 'styles/colors';
 import { secondaryFont } from 'styles/fonts';
 
 export const Container = styled.nav`
@@ -33,6 +33,7 @@ export const SideLink = styled(NavLink)`
   &.active {
     font-weight: bold;
     position: relative;
+    color: ${distillery};
 
     &:before {
       position: absolute;
@@ -42,7 +43,7 @@ export const SideLink = styled(NavLink)`
       left: -50px;
       content: '';
       border-radius: 2px;
-      background-color: ${white};
+      background-color: ${distillery};
     }
   }
 `;

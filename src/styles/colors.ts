@@ -9,3 +9,5 @@ export const greyMid = '#EDEEF1';
 export const greyDark = '#C0C2C9';
 
 export const gold = '#A4C032';
+
+export const distillery = '#D8A462';

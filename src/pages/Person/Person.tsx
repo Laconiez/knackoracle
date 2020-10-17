@@ -6,6 +6,8 @@ import axios from 'axios';
 import personStore from 'stores/Persons.store';
 
 import Layout from 'components/Layouts/CommonLayout';
+import { Input } from 'components/Inputs/Input.styles';
+import Grid from 'components/Grid';
 
 const Person = () => {
   const { addPerson, list, loadList } = personStore;
@@ -32,26 +34,20 @@ const Person = () => {
 
   useEffect(() => {
     loadList();
-  }, [])
+  }, [loadList]);
 
   return (
     <Layout title={'Person'}>
-      <ul>
-        {list.map((item) => (
-          <li key={item.id}>
-            {item.name} {item.cv}
-          </li>
-        ))}
-      </ul>
+      <Grid titles={['Name', 'CV']} data={list} fields={['name', 'cv']} indexField="id" />
       <section>
         <label>
           Name
-          <input ref={nameInput} />
+          <Input ref={nameInput} placeholder="Name" />
         </label>
 
         <label>
           CV
-          <input ref={cvInput} />
+          <Input ref={cvInput} placeholder="CV link" />
         </label>
 
         <img src={imgUrl as string} alt="avatar" />
