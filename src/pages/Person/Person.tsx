@@ -10,9 +10,10 @@ import personStore from 'stores/Persons.store';
 import Layout from 'components/Layouts/CommonLayout';
 import { Input } from 'components/Inputs/Input.styles';
 import Grid from 'components/Grid';
+import Search from 'components/Search';
 
 const Person = () => {
-  const { addPerson, list, loadList } = personStore;
+  const { addPerson, list, loadList, search } = personStore;
 
   const [imgUrl, setImgUrl] = useState<string | undefined>(undefined);
 
@@ -40,7 +41,8 @@ const Person = () => {
 
   return (
     <>
-      <Layout title={'Person'}>
+      <Layout title={'People'}>
+        <Search placeholder="Search" onEnter={search} onSearchClick={search} />
         <Grid titles={['Name', 'CV']} data={list} fields={['name', 'cv']} indexField="id" />
         <section>
           <label>
