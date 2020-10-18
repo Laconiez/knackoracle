@@ -2,7 +2,7 @@ import styled from 'styled-components/macro';
 
 import { secondaryFont } from 'styles/fonts';
 
-import { black, greyMid, greyLight, distillery } from 'styles/colors';
+import { greyMid, greyLight, distillery } from 'styles/colors';
 
 export const Container = styled.div`
   display: flex;

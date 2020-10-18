@@ -10,14 +10,16 @@ import personStore from 'stores/Persons.store';
 import Layout from 'components/Layouts/CommonLayout';
 import { Input } from 'components/Inputs/Input.styles';
 import Grid from 'components/Grid';
+import Search from 'components/Search';
 
 const Person = () => {
-  const { addPerson, list, loadList } = personStore;
+  const { addPerson, list, loadList, search } = personStore;
 
   const [imgUrl, setImgUrl] = useState<string | undefined>(undefined);
 
   const nameInput = useRef<HTMLInputElement>(null);
   const cvInput = useRef<HTMLInputElement>(null);
+  const cityInput = useRef<HTMLInputElement>(null);
 
   const addAvatar = async () => {
     try {
@@ -40,7 +42,8 @@ const Person = () => {
 
   return (
     <>
-      <Layout title={'Person'}>
+      <Layout title={'People'}>
+        <Search placeholder="Search" onEnter={search} onSearchClick={search} />
         <Grid titles={['Name', 'CV']} data={list} fields={['name', 'cv']} indexField="id" />
         <section>
           <label>
@@ -53,6 +56,11 @@ const Person = () => {
             <Input ref={cvInput} placeholder="CV link" />
           </label>
 
+          <label>
+            City
+            <Input ref={cityInput} placeholder="City" />
+          </label>
+
           <img src={imgUrl as string} alt="avatar" />
           <button onClick={addAvatar}> add avatar</button>
         </section>
@@ -60,8 +68,9 @@ const Person = () => {
           onClick={() => {
             const name = nameInput?.current?.value ?? '';
             const cv = cvInput?.current?.value ?? '';
+            const city = cityInput?.current?.value ?? '';
 
-            addPerson({ id: nanoid(), name, cv, avatar: imgUrl });
+            addPerson({ id: nanoid(), name, cv, city });
           }}
         >
           Add person
