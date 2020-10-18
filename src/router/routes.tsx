@@ -2,7 +2,6 @@ import React, { FunctionComponent, ComponentClass, LazyExoticComponent } from 'r
 
 import { Switch, Route } from 'react-router-dom';
 
-import Main from 'pages/Main';
 import Persons from 'pages/Persons/Persons';
 import Person from 'pages/Persons/Person';
 import Skills from 'pages/Skill';
@@ -17,7 +16,7 @@ type RoutesProps = {
 };
 
 const routes: RoutesProps[] = [
-  { path: '/', component: Main, exact: true },
+  { path: '/', component: Persons, exact: true },
   {
     path: '/persons',
     component: Persons,
