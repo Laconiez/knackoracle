@@ -1,8 +1,9 @@
-import { makeAutoObservable, runInAction } from 'mobx';
+import { makeAutoObservable } from 'mobx';
 import { nanoid } from 'nanoid';
 
 import { Collections, db, getCollectionEntries } from '../utils/firebase';
 import { Company } from '../entities/Company';
+import { Person } from '../entities/Person';
 
 class Projects {
   list: Company[] = [];
@@ -33,6 +34,20 @@ class Projects {
       processError();
     }
   };
+
+  search = async (searchText: string = '') => {
+    try {
+      const list = await this.collectionRef
+        .orderBy('name')
+        .startAt( searchText)
+        .endAt( searchText + '\uf8ff')
+        .get();
+
+      this.list = getCollectionEntries<Company>(list);
+    } catch (error) {
+      processError();
+    }
+  }
 }
 
 function processError() {

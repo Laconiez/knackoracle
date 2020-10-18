@@ -19,6 +19,7 @@ const Person = () => {
 
   const nameInput = useRef<HTMLInputElement>(null);
   const cvInput = useRef<HTMLInputElement>(null);
+  const cityInput = useRef<HTMLInputElement>(null);
 
   const addAvatar = async () => {
     try {
@@ -55,6 +56,11 @@ const Person = () => {
             <Input ref={cvInput} placeholder="CV link" />
           </label>
 
+          <label>
+            City
+            <Input ref={cityInput} placeholder="City" />
+          </label>
+
           <img src={imgUrl as string} alt="avatar" />
           <button onClick={addAvatar}> add avatar</button>
         </section>
@@ -62,8 +68,9 @@ const Person = () => {
           onClick={() => {
             const name = nameInput?.current?.value ?? '';
             const cv = cvInput?.current?.value ?? '';
+            const city = cityInput?.current?.value ?? '';
 
-            addPerson({ id: nanoid(), name, cv, avatar: imgUrl });
+            addPerson({ id: nanoid(), name, cv, city });
           }}
         >
           Add person
