@@ -7,7 +7,7 @@ const Sidebar = () => {
     <Container>
       <Links>
         <SideLink to="/persons" activeClassName="active">
-          Persons
+          People
         </SideLink>
         <SideLink to="/projects" activeClassName="active">
           Projects

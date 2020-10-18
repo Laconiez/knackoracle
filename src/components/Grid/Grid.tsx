@@ -8,8 +8,8 @@ type GridProps<T> = {
   data: T[];
   fields: string[];
   indexField: string;
-  onRowClick: (id: string) => void;
-}
+  onRowClick?: (id: string) => void;
+};
 
 const Grid = ({ titles = [], data = [], fields = [], indexField, onRowClick = () => {} }: GridProps<any>) => {
   const displayData = data.map((item, idx) => {
