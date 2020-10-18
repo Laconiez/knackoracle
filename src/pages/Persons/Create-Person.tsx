@@ -38,7 +38,7 @@ const CreatePerson = ({
           const cv = cvInput?.current?.value ?? '';
           const city = cityInput?.current?.value ?? '';
 
-          return name && cv && city ? onConfirm({ id: nanoid(), name, cv, city }) : onCancel();
+          return name && cv ? onConfirm({ id: nanoid(), name, cv, city }) : onCancel();
         }}>Create</Button>
       </Actions>
     </>
