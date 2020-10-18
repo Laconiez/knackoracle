@@ -8,6 +8,7 @@ import Skills from 'pages/Skill';
 import Questions from 'pages/Questions';
 import Question from 'pages/Questions/Question';
 import Projects from 'pages/Projects';
+import Interview from 'pages/Interview';
 
 type RoutesProps = {
   path: string;
@@ -38,6 +39,10 @@ const routes: RoutesProps[] = [
   {
     path: '/questions/:idQuestion',
     component: Question,
+  },
+  {
+    path: '/interviews/:idInterview',
+    component: Interview,
   },
 ];
 

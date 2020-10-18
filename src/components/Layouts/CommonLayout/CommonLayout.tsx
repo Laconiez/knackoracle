@@ -15,7 +15,6 @@ const CommonLayout = ({ title, children }: CommonLayoutProps) => {
     <Container>
       <Sidebar />
       <Content>
-        {' '}
         <TopBar>
           <H1>{title}</H1>{' '}
         </TopBar>{' '}

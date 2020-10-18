@@ -25,7 +25,7 @@ export const H2 = styled.h2`
   margin: 0;
 `;
 
-export const H3 = styled.h2`
+export const H3 = styled.h3`
   font-family: ${mainFont};
   font-weight: 700;
   font-style: normal;
@@ -36,7 +36,7 @@ export const H3 = styled.h2`
   margin: 0;
 `;
 
-export const H4 = styled.h2`
+export const H4 = styled.h4`
   font-family: ${mainFont};
   font-weight: 700;
   font-style: normal;
